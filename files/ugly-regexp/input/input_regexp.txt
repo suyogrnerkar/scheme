@@ -1,0 +1,12 @@
+chars(a, b)
+* chars(,,)
+* chars(,)
+chars(a) + chars(b) . chars(c)
+chars(a) + (chars(b) . chars(c))
+chars(a) + (chars(b) . *chars(c))
+chars(a) + * * (chars(b) . chars(c))
+(chars(a,))
+(chars(a,)))
+(chars(a) . chars(b)) + *chars(c)
+(chars(a) . chars(b)) + chars(c)*
+chars(a) . chars(b) + *chars(c)
