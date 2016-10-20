@@ -9,6 +9,7 @@ SRC_FILES = \
   fns.rkt \
   ugly-regexp/errors.rkt \
   ugly-regexp/parser.rkt \
+  ugly-regexp/input/input_regexp.txt \
   ugly-regexp/scanner.rkt \
   Makefile \
   README
