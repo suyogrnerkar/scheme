@@ -33,12 +33,10 @@
         (match '<NL>)))
     (parse)))
 
-
 ;; Function for UGLY-REGEXP
 (define (ugly-regexp)
   (let ([t (term)])
     (regexp-rest t)))
-
 
 ;; Function for REGEXP-REST
 (define (regexp-rest t)
@@ -47,14 +45,12 @@
         (match 'CHAR ".")
         (let ([t1 (term)])
           (regexp-rest (string-append "(" t t1 ")"))))
-      t))
-
+      t)) ;; else part, return t
 
 ;; Function for TERM
 (define (term)
   (let ([f (factor)])
     (term-rest f)))
-
 
 ;; Function for TERM REST
 (define (term-rest f)
@@ -62,38 +58,34 @@
       (begin
         (match 'CHAR "+")
         (let ([f1 (factor)])
-          (term-rest (string-append "(" f "|" f1 ")"))
-          ))
-      f))
-
+          (term-rest (string-append "(" f "|" f1 ")"))))
+      f)) ;; else part, return f
 
 ;; Function for FACTOR
 (define (factor)
   (cond 
-    [(check? 'CHAR "(")
+    [(check? 'CHAR "(")             ;; cond "("
       (begin
         (match 'CHAR "(")
         (let ([e (ugly-regexp)])
-        (match 'CHAR ")")
-        (string-append "(" e ")")))
+          (match 'CHAR ")")
+          (string-append "(" e ")")))
     ]         
-    [(check? 'CHAR "*")
+    [(check? 'CHAR "*")            ;; cond "*"
       (begin
         (match 'CHAR "*")
-        (let ([ f (factor) ])
-        (string-append f "*")))
+        (let ([f (factor)])
+          (string-append f "*")))
     ]
     [else
       (match 'CHARS)
       (match 'CHAR "(")
-      (let ([ s (token-lexeme *lookahead*) ])
-      (match 'CHAR)
-      (let ([chars (chars (quote-char s))])
-      (match 'CHAR ")")
-      (string-append "[" chars "]")))
-
+      (let ([s (token-lexeme *lookahead*)])
+        (match 'CHAR)
+        (let ([chars (chars (quote-char s))])
+          (match 'CHAR ")")
+          (string-append "[" chars "]")))
     ]))
-
 
 ;; Function for CHARS
 (define (chars s)
@@ -103,7 +95,7 @@
         (let ([s1 (token-lexeme *lookahead*)]) 
           (match 'CHAR)
           (chars (string-append s (quote-char s1)))))
-      s))
+      s)) ;; else part, return s
 
 ;;;********************** Parser Utility Functions *********************
 
