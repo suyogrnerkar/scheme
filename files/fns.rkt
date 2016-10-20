@@ -44,9 +44,13 @@
 
 ;;Return count of occurrences equal? to x in exp
 (define (count-occurrences exp x)
-  (cond ((null? exp) 0)
-        ((equal? (car exp) x) (+ 1 (count-occurrences (cdr exp) x)))
-        (else (count-occurrences (cdr exp) x))))
+  (if (pair? exp)
+      (begin ; if part of expression
+        (let ([head (car exp)] [tail (cdr exp)])
+          (if (equal? x head)
+              [+ 1 (count-occurrences head x) (count-occurrences tail x)]
+              [+ (count-occurrences head x) (count-occurrences tail x)])))
+      0))    ; else part of expression
 
 ;;Return result of evaluating arith expression over Scheme numbers
 ;;with fully parenthesized prefix binary operators 'add, 'sub, 'mul
