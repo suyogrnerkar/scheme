@@ -15,7 +15,6 @@
 
 ;Q4 // sum of lengths of lists
 (define (sum-lengths list)
-  (define len (length list))
   (if(null? list)
      0
      (+ (length (car list)) (sum-lengths (cdr list)))))
