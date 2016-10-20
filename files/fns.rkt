@@ -80,7 +80,8 @@
 ;;first) at x.  Must be tail-recursive.
 (define (poly-eval-tr coeffs x)
   (define (poly-eval-tr-aux coeff accumulator)
-    (if (null? coeff) accumulator
+    (if (null? coeff)
+        accumulator
         (poly-eval-tr-aux (cdr coeff) (+ (* accumulator x) (car coeff)) )))
   (poly-eval-tr-aux coeffs 0))
 
