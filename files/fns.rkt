@@ -7,8 +7,8 @@
 ;;should use the positive square-root of the discriminant, the second
 ;;element should use the negative square-root of the discriminant.
 (define (quadratic-roots a b c)
-  (define delta (sqrt (- (* b b) (* 4.0 a c))))
-  ( let ([denom (* 2.0 a)])
+  (define delta (sqrt (- (* b b) (* 4 a c))))
+  ( let ([denom (* 2 a)])
      (list (/ (+ (- b) delta) denom) (/ (- (- b) delta) denom))))
 
 ;;Return the list resulting by multiplying each element of `list` by `x`.
@@ -40,7 +40,7 @@
     (if (null? coeffs)
         accumulator
         (horner-aux (cdr coeffs) x (+ (* accumulator x) (car coeffs)))))
-  (horner-aux (reverse coeffs) x 0)) 
+  (horner-aux coeffs x 0)) 
 
 ;;Return count of occurrences equal? to x in exp
 (define (count-occurrences exp x)
